@@ -1,6 +1,8 @@
-const groupByTransData = {}
+const groupByTransData: {
+  [key: string]: number;
+} = {};
 
-function distributedTransactions(accounts, totalTransactions, date = new Date()) {
+function distributedTransactions(accounts:any, totalTransactions:any, date = new Date()) {
   const n = accounts.length;
   // Determine even distribution 
   const base = Math.floor(totalTransactions / n);
