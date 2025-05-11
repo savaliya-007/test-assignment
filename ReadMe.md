@@ -61,3 +61,7 @@ Please write Node js code to achieve given goal/feature.
  ### Project Guildline
 
  ### File sctructure
+
+ ### Asumtion
+ we are assuming that balance can be negative
+ ammount transer is 1

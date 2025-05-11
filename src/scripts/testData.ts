@@ -1,10 +1,14 @@
+import { AccountDoc } from "../model/Account";
 import { distributedTransactions } from "../service/transactionGenerator";
 
 // exp usage
-const accounts = [
-  'A1','A2','A3','A4','A5','A6','A7',
-  'A8','A9','A10','A11','A12','A13'
-];
+const accounts = [{
+    id: "a1",
+  balance: 0,
+  createdAt: new Date(),
+  updatedAt:new Date()
+
+} as AccountDoc]
 
 function getNextDateFromIndex(ind = 0){
     const today = new Date();
@@ -15,5 +19,5 @@ function getNextDateFromIndex(ind = 0){
 
 // test loop
 for(let i = 0;i < 30;i++){
-    distributedTransactions(accounts, 180, getNextDateFromIndex(i));
+    distributedTransactions(accounts,  getNextDateFromIndex(i));
 }
