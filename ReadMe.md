@@ -66,10 +66,82 @@ Please write Node js code to achieve given goal/feature.
  npm start
  ```
 
- ### Project Guildline
 
- ### File sctructure
 
- ### Asumtion
- we are assuming that balance can be negative
- ammount transer is 1
+
+ # About
+
+A production-ready Node.js + TypeScript + ES module application designed to:
+
+* Seed 13 dummy bank accounts in MongoDB
+* Schedule a daily job that evenly distributes and creates 180 payment transactions across those accounts during working hours
+* Provide an atomic `transfer` function to debit/credit two accounts and log a transaction in a single MongoDB transaction session
+
+
+---
+
+## Assumptions
+
+* **13 Accounts**: there is 13 account only
+* **Daily Total**: The system generates exactly 180 transactions per day.
+* **Working Hours**: Transactions are timestamped between 9:00 and 17:00 local time (Asia/Kolkata).
+* **Even Distribution**: Transactions are as evenly distributed as possible across all accounts (180 % 13 ≠ 0).
+* **Atomicity**: The `transfer` service uses MongoDB sessions to ensure both balances and the transaction log are updated atomically.
+* **Environment**: Node.js v18+, MongoDB v4.0+  (for transactions), TypeScript 4.x.
+
+---
+
+## Getting Started
+
+1. **Clone the repo**
+
+   ```bash
+   git clone  https://github.com/savaliya-007/test-assignment.git
+   cd test-assignment
+   ```
+
+---
+
+## Project Structure
+
+```
+├── tsconfig.json
+├── package.json
+├── .env
+├── src
+│   ├── config
+│   │   └── index.ts       # Loads and exports typed config
+│   ├── model
+│   │   ├── Account.ts     # Account schema
+│   │   └── Transaction.ts # Transaction schema
+│   ├── service
+│   │   ├── saveTransactions.ts       # Atomic transfer logic
+│   │   └── transactionGenerator.ts # Generate & insert daily txns
+|   |   |__ dailyTransactions.ts
+│   ├── scripts
+│   │   └── initAccounts.ts         # Seed accounts
+|   |   |__ testData.ts
+│   └── index.ts                    # Bootstrap & scheduler launch
+└── dist                           # Compiled output
+```
+
+---
+
+## Configuration
+
+All runtime settings live in **.env** and `src/config/index.ts`:
+
+| Variable       | Default             | Description                                      |
+| -------------- | ------------------- | ------------------------------------------------ |
+| MONGODB\_URI   | mongodb://localhost | MongoDB connection URI                           |
+| TOTAL\_TXNS    | 180                 | Number of transactions to generate per day       |
+| WORK\_START    | 9                   | Start hour for timestamps (24h format)           |
+| WORK\_END      | 17                  | End hour for timestamps                          |
+| CRON\_SCHEDULE | 0 9 \* \* \*        | Cron expression for daily job (default 9 AM IST) |
+
+---
+
+---
+
+
+
