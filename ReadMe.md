@@ -48,6 +48,14 @@ Please write Node js code to achieve given goal/feature.
  ```
  npm install
  ```
+### To Seed the DB with 13 Accounts  
+ ``` 
+ pnpm seed:db 
+ ```
+ or
+ ```
+ npm seed:db
+ ```
 
  ### To Start app 
  ``` 
